@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import axios from 'axios';
 export default class SignUp extends Component {
     constructor(props) {
         super(props)
@@ -7,18 +7,37 @@ export default class SignUp extends Component {
           title: '',
           author: '',
           organization: '',
+          keyword:'',
         }
       };
-    submit=()=>{
+    query=()=>{
         // if (this.state.title !== '') {
         //   this.props.history.push('/Index')
         // } else {
         //   alert('title cannot be null');
         // }
+        
         if (this.state.author !== '') {
             const inputAuthor =this.state.author;
         }
-      
+        const searchAuthor = {
+            authorid:'1',
+            author:'haoran',
+            orgid:'1'
+        }
+        axios.post('http://localhost:8088/postgresql/query',searchAuthor)
+            .then(function (response) {
+                if(response.data!=null){
+                    this.setState(this.initialState);
+                    alert("search info posted successfully!");
+                }
+                console.log(response.data);
+                
+            })
+        .catch(function (error) {
+            console.log(error);
+        })
+
         
     };
     title_change=(e)=>{
@@ -37,8 +56,14 @@ export default class SignUp extends Component {
         })
     }
 
+    keyword_change=(e)=>{
+        this.setState({
+            keyword: e.target.value
+        })
+    }
+
     render() {
-        const {title, bibtext,author,organization,pubDate} = this.state
+        const {title,author,organization,keyword} = this.state
         return (
             <form>
 
@@ -59,7 +84,12 @@ export default class SignUp extends Component {
                     <input type="text" value={organization} onChange={this.organization_change} className="form-control" placeholder="Enter organization"/>
                 </div>
 
-                <button type="submit" onClick={this.submit} className="btn btn-dark btn-lg btn-block">Query</button>
+                <div className="form-group">
+                    <label>Keyword</label>
+                    <input type="text" value={keyword} onChange={this.keyword_change} className="form-control" placeholder="Enter keyword"/>
+                </div>
+
+                <button type="submit" onClick={this.query} className="btn btn-dark btn-lg btn-block">Query</button>
          
             </form>
         );
