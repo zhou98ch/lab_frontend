@@ -66,8 +66,9 @@ export default class SignUp extends Component {
                         }
         }
         
-        axios.get('http://localhost:8080/user/search/science', {params:searchInfo}, config)
+        axios.get('http://129.69.209.197:31002/user/search/yang146', {params:searchInfo}, config)
             .then(function (response) {
+                alert("press enter to show the result!");
                 if(response.data!=null){
                     this.setState(this.initialState);
                    

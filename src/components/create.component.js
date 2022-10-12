@@ -223,7 +223,8 @@ export default class Login extends Component {
 
         
         const config = {     
-            headers: { 'content-type': 'multipart/form-data',
+            // headers: { 'content-type': 'multipart/form-data',
+            headers: { 
                        'Access-Control-Allow-Origin':'http://localhost:3000'
                         }
         }
@@ -234,7 +235,7 @@ export default class Login extends Component {
         
         //129.69.209.197:8080 http://localhost:8080/create
         //axios.get('http://localhost:8088/postgresql/author/YangHaoran')
-        axios.post('http://localhost:8080/user/create', formData, config)
+        axios.post('http://129.69.209.197:31002/user/create', formData, config)
             .then(response => {
                 console.log(response);
             })

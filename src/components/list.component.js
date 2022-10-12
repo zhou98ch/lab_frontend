@@ -14,13 +14,13 @@ class TrData extends React.Component{
       // formData.append('objectId','1111.txt');
       // formData.append('path','test');
       let fileData = {'objectId':''};
-      fileData.objectId = '9698c513-2ce8-4a14-8b9f-8941ded9f352.txt';
+      fileData.objectId = '737fa382-2f95-48c8-867f-3006c69233e6.txt';
       
       const config = {     
         headers: { 
          //responseType: "arraybuffer",
          
-                   'Access-Control-Allow-Origin':'http://localhost:3000'
+                   'Access-Control-Allow-Origin':'*'
                     },
         responseType: "arraybuffer"
     }
