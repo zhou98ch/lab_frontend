@@ -212,11 +212,14 @@ export default class Login extends Component {
         formData.append('date', this.state.pubDate);
         formData.append('filename', uploadFile.filename);
         formData.append('fileSize', '111');
-        //formData.append('fileSize', uploadFile.filesize);
+        formData.append('pubid', 0);
         formData.append('fileType', uploadFile.filetype);
-        formData.append('author', this.state.author);
-        formData.append('organization', this.state.organization);
-        formData.append('address','address');
+        formData.append('author.authorid', 0);
+        formData.append('author.name', this.state.author);
+        formData.append('organization.address', 'address');
+        formData.append('organization.name', this.state.organization);
+        formData.append('organization.orgId', 0);
+        
 
         
         const config = {     
@@ -231,7 +234,7 @@ export default class Login extends Component {
         
         //129.69.209.197:8080 http://localhost:8080/create
         //axios.get('http://localhost:8088/postgresql/author/YangHaoran')
-        axios.get('http://localhost:8080/user/create', formData, config)
+        axios.post('http://localhost:8080/user/create', formData, config)
             .then(response => {
                 console.log(response);
             })

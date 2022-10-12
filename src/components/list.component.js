@@ -13,16 +13,19 @@ class TrData extends React.Component{
       // let formData = new FormData;
       // formData.append('objectId','1111.txt');
       // formData.append('path','test');
-      let fileData = {'objectId':'','path':''};
-      fileData.objectId = '1111.txt';
-      fileData.path = 'test'
+      let fileData = {'objectId':''};
+      fileData.objectId = '9698c513-2ce8-4a14-8b9f-8941ded9f352.txt';
+      
       const config = {     
         headers: { 
          //responseType: "arraybuffer",
-         //responseType: "blob",
+         
                    'Access-Control-Allow-Origin':'http://localhost:3000'
-                    }
+                    },
+        responseType: "arraybuffer"
     }
+    //http://129.69.209.197:31002/
+    //'http://localhost:8080/user/getFile'
     axios.get('http://localhost:8080/user/getFile', {params:fileData}, config)
         .then((response) => {
           var link = document.createElement("a");
@@ -43,7 +46,7 @@ class TrData extends React.Component{
     render(){
       // this.props.entrys = {authorid:'1',name:'2',orgid:'3'};
       // const data = [this.props.entrys];
-      const data = [{'authorid':'1','name':'2','orgid':'3'},{'authorid':'1','name':'2','orgid':'3'}];
+      const data = [{'authorid':'1','name':'Anna','orgid':'3'},{'authorid':'2','name':'Mike','orgid':'3'}];
       console.log(data.name)
       return (
         data.map(entry=>{
