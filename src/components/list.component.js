@@ -26,7 +26,7 @@ class TrData extends React.Component{
     }
     //http://129.69.209.197:31002/
     //'http://localhost:8080/user/getFile'
-    axios.get('http://localhost:8080/user/getFile', {params:fileData}, config)
+    axios.get('http://localhost:3000/api/user/getFile', {params:fileData}, config)
         .then((response) => {
           var link = document.createElement("a");
           link.href = window.URL.createObjectURL(
