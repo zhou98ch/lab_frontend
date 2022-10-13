@@ -172,7 +172,7 @@ export default class SignUp extends Component {
         //   }
         const config = {     
             headers: { 
-                'content-type': 'multipart/form-data',
+                //'content-type': 'multipart/form-data',
                        'content-type':'application/x-www-form-urlencoded'
                         }
         }
@@ -188,27 +188,30 @@ export default class SignUp extends Component {
         // });
         
         ///////////after response/////////////////////////
-        const response_data = [{"name":"cc","title":"cc","date":"cc","filename":"yang143.txt","size":"111","type":".txt","mntpath":"/mnt/nfs-solr","ObjectId":"943e07d4-96de-48b2-b08c-b83230bb3337.txt","docId":60,"isdeleted":false,"objectId":"943e07d4-96de-48b2-b08c-b83230bb3337.txt"},
-                             {"name":"yang146","title":"yang146","date":"yang146","filename":"yang146","size":"txt","type":"yang146","mntpath":"/mnt/nfs-solr","ObjectId":"ba0f62c9-291a-4ba9-a119-09d3ba036119.txt","docId":53,"isdeleted":false,"ObjectId":"ba0f62c9-291a-4ba9-a119-09d3ba036119.txt"},
-                            ]
-        this.setState({
-            entrys:response_data,
-            isLoaded:true
-        });
-        
-        // axios.get('http://localhost:8080/user/search/science', {params:searchInfo}, config)
-        //     .then(function (response) {
-        //         if(response.data!=null){
-        //             this.setState(this.initialState);
-        //         const docs = testResponse;
-        //         this.URLinfos = JSON.stringify(docs);
-        //         }
-        //         //console.log(response.data);
+        // const response_data = [{"name":"cc","title":"cc","date":"cc","filename":"yang143.txt","size":"111","type":".txt","mntpath":"/mnt/nfs-solr","ObjectId":"943e07d4-96de-48b2-b08c-b83230bb3337.txt","docId":60,"isdeleted":false,"objectId":"943e07d4-96de-48b2-b08c-b83230bb3337.txt"},
+        //                      {"name":"yang146","title":"yang146","date":"yang146","filename":"yang146","size":"txt","type":"yang146","mntpath":"/mnt/nfs-solr","ObjectId":"ba0f62c9-291a-4ba9-a119-09d3ba036119.txt","docId":53,"isdeleted":false,"ObjectId":"ba0f62c9-291a-4ba9-a119-09d3ba036119.txt"},
+        //                     ]
+        // this.setState({
+        //     entrys:response_data,
+        //     isLoaded:true
+        // });
+
+        ////////send real request//////////////////////////////////
+        axios.get('http://localhost:8080/user/search/science', {params:searchInfo}, config)
+            .then(function (response) {
+                if(response.data!=null){
+                    this.setState({
+                        entrys:response.data,
+                        isLoaded:true
+                    });
+                    
+                }
+                //console.log(response.data);
                 
-        //     })
-        // .catch(function (error) {
-        //     console.log(error);
-        // })
+            })
+        .catch(function (error) {
+            console.log(error);
+        })
         
 
 
