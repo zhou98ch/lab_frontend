@@ -241,6 +241,7 @@ export default class Login extends Component {
             .catch(error => {
                 console.log(error);
             });
+        
         console.log('success')
         //problems:
         //1.org.apache.tomcat.util.http.fileupload.impl.FileSizeLimitExceededException: The field file exceeds its maximum permitted size of 1048576 bytes.

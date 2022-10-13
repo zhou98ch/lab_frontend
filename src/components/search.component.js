@@ -58,6 +58,21 @@ class TrData extends React.Component{
             })
             .catch((error) => {});
     }
+    deleteHandler=(objectId)=>{
+        const config = {     
+            headers: { 
+                'Access-Control-Allow-Origin':'http://localhost:3000'
+                        }
+        }
+        axios.delete('http://localhost:8080/user/deleteFile', {	
+            params: {	// 请求参数拼接在url上
+                objectId: objectId
+            },config
+          }).then(res => {
+            console.log(res)
+          })
+
+    }
     componentDidMount(){  
         
     }
@@ -80,9 +95,7 @@ class TrData extends React.Component{
                   <td>{entry.date}</td>
                   <td>{entry.type}</td>
                   <td><button onClick = {this.downloadHandler}>Download</button></td>
-                  <td><button onClick = {() => {
-                    
-                    }}>Delete</button></td>
+                  <td><button onClick = {this.deleteHandler(entry.objectId)}>Delete</button></td>
                 </tr>
             )       
         })
@@ -113,7 +126,8 @@ export default class SignUp extends Component {
     //         isLoaded:this.state.isLoaded
     //     });
     //   }
-    query=(e)=>{
+    query = (e) => {
+        
         // if (this.state.title !== '') {
         //   this.props.history.push('/Index')
         // } else {
@@ -122,7 +136,7 @@ export default class SignUp extends Component {
         //const { history } = this.props;
         //alert(history);
 
-        // e.preventDefault(); // 这里添加了一个阻止默认事件
+        e.preventDefault(); // 这里添加了一个阻止默认事件
         //this.props.history.push('/create'); //Uncaught TypeError: Cannot read properties of undefined (reading 'push')
         // this.props.history.push("/list", {
 
