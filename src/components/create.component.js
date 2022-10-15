@@ -303,7 +303,7 @@ export default class Login extends Component {
 
 
     render() {
-        const {title, bibtext,author,organization,orgAddress,pubDate,url} = this.state
+        const {title, bibtext,author,organization,orgAddress,pubDate,url,addInfos} = this.state
         return (
             <form>
 
