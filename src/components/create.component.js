@@ -84,7 +84,6 @@ export default class Login extends Component {
         var myfile = document.getElementById('myfile');
         var uploadFile = {filename:'',filetype:'',filesize:''};
         
-        
         if (myfile.files[0] === undefined) {
             alert('no file uploaded');
         } else {
@@ -101,11 +100,13 @@ export default class Login extends Component {
 
         /////////////get additional json data///////////////
         let addInfoObj = {};
+        
         this.state.addInfos.forEach(function (item, index, array) {
             addInfoObj[item.key]=item.val;
         })
-        const addInfoJson = JSON.stringify(addInfoJson);
+        
 
+        const addInfoJson = JSON.stringify(addInfoObj);
         ////////////////////////////////
 
         // const paper = {
@@ -145,10 +146,7 @@ export default class Login extends Component {
         formData.append('organization.address', this.state.address);
         formData.append('organization.name', this.state.organization);
         formData.append('organization.orgId', 0);
-        formData.append('addData',addInfoJson)
-        
-
-        
+        formData.append('addData',addInfoJson);
         const config = {     
             // headers: { 'content-type': 'multipart/form-data',
             headers: { 
@@ -159,17 +157,19 @@ export default class Login extends Component {
         //console.log(formData);
         // axios.get('http://localhost:8088/postgresql/author/YangHaoran')
         
-        
         //129.69.209.197:8080 http://localhost:8080/create
         //axios.get('http://localhost:8088/postgresql/author/YangHaoran')
-        axios.post('http://129.69.209.197:31002/user/create', formData, config)
+        axios.post('http://localhost:8080/user/create', formData, config)
             .then(response => {
+                alert("response");
+                alert(response);
                 console.log(response);
             })
             .catch(error => {
                 console.log(error);
             });
-        console.log('success')
+        console.log('success');
+        alert("success");
         //problems:
         //1.org.apache.tomcat.util.http.fileupload.impl.FileSizeLimitExceededException: The field file exceeds its maximum permitted size of 1048576 bytes.
         //4.bibtext 填充逻辑 如果不填就是null

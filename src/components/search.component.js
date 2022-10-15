@@ -22,12 +22,13 @@ class TrData extends React.Component{
     initialState ={
         data:'xxx'
       };
-    downloadHandler=()=>{
+    downloadHandler=(objectId)=>{
           // let formData = new FormData;
           // formData.append('objectId','1111.txt');
           // formData.append('path','test');
           let fileData = {'objectId':''};
-          fileData.objectId = '9698c513-2ce8-4a14-8b9f-8941ded9f352.txt';
+          //fileData.objectId = '9698c513-2ce8-4a14-8b9f-8941ded9f352.txt';
+          fileData.objectId = objectId;
           
           const config = {     
             headers: { 
@@ -92,7 +93,7 @@ class TrData extends React.Component{
                   <td>{entry.name}</td>
                   <td>{entry.date}</td>
                   <td>{entry.type}</td>
-                  <td><button onClick = {this.downloadHandler}>Download</button></td>
+                  <td><button onClick = {this.downloadHandler(entry.objectId)}>Download</button></td>
                   <td><button onClick = {this.deleteHandler(entry.objectId)}>Delete</button></td>
                 </tr>
             )       
@@ -112,7 +113,9 @@ export default class SignUp extends Component {
           keyword:'',
           URLinfos:'',
           entrys:[],
-          isLoaded:false
+          isLoaded:false,
+
+          addInfos:[{ key: '', val:'' },]
         }
         this.query = this.query.bind(this)
         var urldocs = '';
@@ -141,7 +144,7 @@ export default class SignUp extends Component {
         //     data: 'xyz' //需要传递的参数
             
         //     });
-        let searchInfo = {authorname:'',title:'',date:''};
+        let searchInfo = {authorname:'',title:'',date:'',addData:''};
         // let searchAuthor = '';
         // let searchtitle = ''
         let formData = new FormData();
@@ -157,6 +160,20 @@ export default class SignUp extends Component {
             searchInfo.date =this.state.date;
             //formData.append('authodatername',this.state.date);
         }
+        if (this.state.addInfos[0].key !== '') {
+            /////////////get additional json data///////////////
+        let addInfoObj = {};
+        
+        this.state.addInfos.forEach(function (item, index, array) {
+            addInfoObj[item.key]=item.val;
+        })
+        
+
+        const addInfoJson = JSON.stringify(addInfoObj);
+            searchInfo.addData =addInfoJson;
+            //formData.append('authodatername',this.state.date);
+        }
+        
         // if (this.state.keyword !== '') {
         //     searchInfo.keyword =this.state.keyword;
         // }
@@ -195,13 +212,15 @@ export default class SignUp extends Component {
         // });
 
         ////////send real request//////////////////////////////////
-        axios.get('http://localhost:8080/user/search/science', {params:searchInfo}, config)
+        axios.get('http://localhost:8080/user/search/'+this.state.keyword, {params:searchInfo}, config)
             .then(function (response) {
+                alert("test");
                 if(response.data!=null){
                     this.setState({
                         entrys:response.data,
                         isLoaded:true
                     });
+                    alert(response.data);
                     
                 }
                 //console.log(response.data);
@@ -235,9 +254,48 @@ export default class SignUp extends Component {
             keyword: e.target.value
         })
     }
+    addInfos_change=(e,index)=>{
+        const { name, value } = e.target;
+        const list = [...this.state.addInfos];
+        list[index][name] = value;
+        this.setState({
+            addInfos:list
+        });
+    }
 
+    increaseLine = () =>{
+        this.setState({
+            addInfos:[...this.state.addInfos, { key:'', val:''}]
+        });
+    }
+    
+    handleAddClick = (e) => {
+        e.preventDefault();
+        // let list = [...this.state.addInfos];
+        // let m = list.push({ key:'', val:''});
+        // let m =[...this.state.addInfos, { key:'', val:''}];
+        // let n = m.length;
+        
+        // // this.setState({
+        // //     addInfos:list
+        // // });
+        
+        // let x=this.state.addInfos.length;
+        // let y =1;
+        this.increaseLine();
+        
+    };
+
+    handleRemoveClick = (e,index) => {
+        
+        const list = [...this.state.addInfos];
+        list.splice(index, 1);
+        this.setState({
+            addInfos:list
+        });
+    };
     render() {
-        const {title,author,date,keyword} = this.state;
+        const {title,author,date,keyword,addInfos} = this.state;
         //if(false){
         if(!this.state.isLoaded){
               return (
@@ -265,6 +323,34 @@ export default class SignUp extends Component {
                     <label>Keyword</label>
                     <input type="text" value={keyword} onChange={this.keyword_change} className="form-control" placeholder="Enter keyword"/>
                 </div>
+
+                {addInfos.map((x, i) => {
+             return (
+                <div className="additional-box">
+                    <input
+                    type = "text"
+                    name = "key"
+                    value = {x.key}
+                    onChange={e =>this.addInfos_change(e,i)}
+                    />
+
+                    <input
+                    type = "text"
+                    name = "val"
+                    value = {x.val}
+                    onChange={e =>this.addInfos_change(e,i)}
+                    />
+                    <div>
+                    <button onClick={() => this.handleRemoveClick(i)}>Remove</button>
+                    <button onClick={this.handleAddClick}>Add</button>
+                    </div>
+                    <pre>
+                        {JSON.stringify(addInfos[i])}
+                    </pre>
+                    
+                </div>
+                );
+            })}
                 
               
 
@@ -303,13 +389,41 @@ export default class SignUp extends Component {
                     <input type="text" value={keyword} onChange={this.keyword_change} className="form-control" placeholder="Enter keyword"/>
                 </div>
                 
-              
+                {addInfos.map((x, i) => {
+             return (
+                <div className="additional-box">
+                    <input
+                    type = "text"
+                    name = "key"
+                    value = {x.key}
+                    onChange={e =>this.addInfos_change(e,i)}
+                    />
+
+                    <input
+                    type = "text"
+                    name = "val"
+                    value = {x.val}
+                    onChange={e =>this.addInfos_change(e,i)}
+                    />
+                    <div>
+                    <button onClick={() => this.handleRemoveClick(i)}>Remove</button>
+                    <button onClick={this.handleAddClick}>Add</button>
+                    </div>
+                    <pre>
+                        {JSON.stringify(addInfos[i])}
+                    </pre>
+                    
+                </div>
+                );
+            })}
 
                 <button type="submit" onClick={this.query} className="btn btn-dark btn-lg btn-block">       
                                 Query
                 </button>
          
             </form>
+
+            
 
             <table className="table table-bordered">
                 <thead>
