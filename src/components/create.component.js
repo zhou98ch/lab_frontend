@@ -133,7 +133,6 @@ export default class Login extends Component {
         //   });
         // formData.append('file',myfile.files[0]);
         // formData.append('metadata',json);
-
         formData.append('file',myfile.files[0]);
         formData.append('title', this.state.title);
         formData.append('date', this.state.pubDate);
