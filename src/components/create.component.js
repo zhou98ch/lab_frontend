@@ -113,7 +113,7 @@ export default class Login extends Component {
         
         addInfosKey:'',
         addInfosVal:'',
-        addInfos:[{ key: '', val:'' },{ key: '', val:'' }]
+        addInfos:[{ key: '', val:'' },]
       };
       
     submit=()=>{
@@ -183,6 +183,14 @@ export default class Login extends Component {
             uploadFile.filetype = filevalue.substring(index);
             //alert(uploadFile.filename);
         }
+
+        /////////////get additional json data///////////////
+        let addInfoObj = {};
+        this.state.addInfos.forEach(function (item, index, array) {
+            addInfoObj[item.key]=item.val;
+        })
+        const addInfoJson = JSON.stringify(addInfoJson);
+
         /////////////////////////////////
 
         // const paper = {
@@ -276,6 +284,8 @@ export default class Login extends Component {
         
     };
 
+
+
     
 
     title_change=(e)=>{
@@ -342,7 +352,38 @@ export default class Login extends Component {
             addInfos:list
         });
     }
+
+    increaseLine = () =>{
+        this.setState({
+            addInfos:[...this.state.addInfos, { key:'', val:''}]
+        });
+    }
     
+    handleAddClick = (e) => {
+        e.preventDefault();
+        // let list = [...this.state.addInfos];
+        // let m = list.push({ key:'', val:''});
+        // let m =[...this.state.addInfos, { key:'', val:''}];
+        // let n = m.length;
+        
+        // // this.setState({
+        // //     addInfos:list
+        // // });
+        
+        // let x=this.state.addInfos.length;
+        // let y =1;
+        this.increaseLine();
+        
+    };
+
+    handleRemoveClick = (e,index) => {
+        
+        const list = [...this.state.addInfos];
+        list.splice(index, 1);
+        this.setState({
+            addInfos:list
+        });
+    };
 
 
     render() {
@@ -392,7 +433,55 @@ export default class Login extends Component {
                 </div>
 
                 
-                    <div className="additional-box">
+                    
+
+                
+            {addInfos.map((x, i) => {
+             return (
+                <div className="additional-box">
+                    <input
+                    type = "text"
+                    name = "key"
+                    value = {x.key}
+                    onChange={e =>this.addInfos_change(e,i)}
+                    />
+
+                    <input
+                    type = "text"
+                    name = "val"
+                    value = {x.val}
+                    onChange={e =>this.addInfos_change(e,i)}
+                    />
+                    <div>
+                    <button onClick={() => this.handleRemoveClick(i)}>Remove</button>
+                    <button onClick={this.handleAddClick}>Add</button>
+                    </div>
+                    <pre>
+                        {JSON.stringify(addInfos[i])}
+                    </pre>
+                    
+                </div>
+                );
+            })}
+                
+
+
+                
+                
+             
+
+                
+
+
+                <button type="submit" onClick={this.submit} className="btn btn-dark btn-lg btn-block">Submit</button>
+         
+            </form>
+        );
+    }
+}
+
+
+{/* <div className="additional-box">
                         <input
                         type = "text"
                         name = "key"
@@ -427,69 +516,4 @@ export default class Login extends Component {
                     />
                     <button>Add</button>
                     
-                </div>
-
-                <div className="additional-box">
-                    <input
-                    type = "text"
-                    name = "key"
-                    value = {addInfos.key}
-                    onChange={e =>this.addInfos_change(e,0)}
-                    />
-
-                    <input
-                    type = "text"
-                    name = "val"
-                    value = {addInfos.val}
-                    onChange={e =>this.addInfos_change(e,0)}
-                    />
-                    <button>Add</button>
-                    <button>Remove</button>
-                    
-                </div>
-
-                <div className="additional-box">
-                    <input
-                    type = "text"
-                    name = "key"
-                    value = {addInfos.key}
-                    onChange={e =>this.addInfos_change(e,1)}
-                    />
-
-                    <input
-                    type = "text"
-                    name = "val"
-                    value = {addInfos.val}
-                    onChange={e =>this.addInfos_change(e,1)}
-                    />
-                    <button>Add</button>
-                    <button>Remove</button>
-                    
-                </div>
-
-                
-
-
-                
-                <pre>
-                    {addInfosKey}
-                   -----
-                   {addInfosVal}
-                   -----
-                   {JSON.stringify(addInfos[0])}
-                   ---------
-                   {JSON.stringify(addInfos[1])}
-                </pre>
-             
-
-                
-
-
-                <button type="submit" onClick={this.submit} className="btn btn-dark btn-lg btn-block">Submit</button>
-         
-            </form>
-        );
-    }
-}
-
-
+                </div> */}
