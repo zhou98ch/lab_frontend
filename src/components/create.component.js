@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import {parseBibFile, normalizeFieldValue, organization} from "bibtex";
 import { findAllInRenderedTree } from "react-dom/test-utils";
 import axios from 'axios';
-import $ from 'jquery';
+import $, { event } from 'jquery';
 window.jQuery = $;
 window.$ = $;
 //TODO
@@ -110,8 +110,12 @@ export default class Login extends Component {
         url:'',
         pubDate: '',
         orgAddress:'',
+        
+        addInfosKey:'',
+        addInfosVal:'',
+        addInfos:[{ key: '', val:'' },{ key: '', val:'' }]
       };
-
+      
     submit=()=>{
         //alert('sub');
         // extracrUrl();
@@ -309,15 +313,44 @@ export default class Login extends Component {
             bibtext: e.target.value
         })
     }
+    addInfosKey_change=(e,index)=>{
+ 
+        // let y = e.target.value.key;
+        
+        //alert(e.target);
+        const list = [...this.state.addInfosKey];
+        list[index] = e.target.value;
+        this.setState({
+            addInfosKey:list
+        });
+    }
+    addInfosVal_change=(e,index)=>{
+        //let {key,val} = e.target;
+        //alert(e.target);
+        const list = [...this.state.addInfosVal];
+        list[index] = e.target.value;
+        this.setState({
+            addInfosVal:list
+        });
+    }
+
+    addInfos_change=(e,index)=>{
+        const { name, value } = e.target;
+        const list = [...this.state.addInfos];
+        list[index][name] = value;
+        this.setState({
+            addInfos:list
+        });
+    }
     
 
 
     render() {
-        const {title, bibtext,author,organization,orgAddress,pubDate,url} = this.state
+        const {title, bibtext,author,organization,orgAddress,pubDate,url,addInfosKey,addInfosVal,addInfos} = this.state;
         return (
             <form>
 
-                <h3>Create Publication Record</h3>
+                <h3>Use Case:Create and Upload</h3>
 
                 <div className="form-group">
                     <label>Title</label>
@@ -357,6 +390,96 @@ export default class Login extends Component {
                     <label>Select a file:</label>
                     <input type="file" className="form-control" name="myfile" id="myfile" ></input>
                 </div>
+
+                
+                    <div className="additional-box">
+                        <input
+                        type = "text"
+                        name = "key"
+                    
+                        onChange={e =>this.addInfosKey_change(e,0)}
+                        />
+
+                        <input
+                        type = "text"
+                        name = "val"
+                        
+                        onChange={e =>this.addInfosVal_change(e,0)}
+                        />
+                        <button>Add</button>
+                        <button>Remove</button>
+                        
+                    </div>
+
+                <div className="additional-box">
+                    <input
+                    type = "text"
+                    name = "key"
+                    
+                    onChange={e =>this.addInfosKey_change(e,1)}
+                    />
+
+                    <input
+                    type = "text"
+                    name = "val"
+                    
+                    onChange={e =>this.addInfosVal_change(e,1)}
+                    />
+                    <button>Add</button>
+                    
+                </div>
+
+                <div className="additional-box">
+                    <input
+                    type = "text"
+                    name = "key"
+                    value = {addInfos.key}
+                    onChange={e =>this.addInfos_change(e,0)}
+                    />
+
+                    <input
+                    type = "text"
+                    name = "val"
+                    value = {addInfos.val}
+                    onChange={e =>this.addInfos_change(e,0)}
+                    />
+                    <button>Add</button>
+                    <button>Remove</button>
+                    
+                </div>
+
+                <div className="additional-box">
+                    <input
+                    type = "text"
+                    name = "key"
+                    value = {addInfos.key}
+                    onChange={e =>this.addInfos_change(e,1)}
+                    />
+
+                    <input
+                    type = "text"
+                    name = "val"
+                    value = {addInfos.val}
+                    onChange={e =>this.addInfos_change(e,1)}
+                    />
+                    <button>Add</button>
+                    <button>Remove</button>
+                    
+                </div>
+
+                
+
+
+                
+                <pre>
+                    {addInfosKey}
+                   -----
+                   {addInfosVal}
+                   -----
+                   {JSON.stringify(addInfos[0])}
+                   ---------
+                   {JSON.stringify(addInfos[1])}
+                </pre>
              
 
                 
