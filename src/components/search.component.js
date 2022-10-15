@@ -5,11 +5,21 @@ import axios from 'axios';
 //import { Link } from 'dva/router';
 //npm install http-proxy-middleware
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+//1 bibtext直接显示 按钮
+//2 create 加号按钮 x
+//3 create 传json字符串 x
+//4 search 加号按钮
+//5 结果加一列显示solr的content 
 
 //1.跳转 done
 //2.link 带参数
 //3.最好url不一样 done
 //4.react k8s
+//5.add international language
+//6.load metadata from file
+//7.json field
+//8.search 里加一些别的field
+//9.展示solr schema
 
 // import { createMemoryHistory as createHistory } from "history";
 // export const history = createHistory();
@@ -283,8 +293,8 @@ export default class SignUp extends Component {
             <>
             <form>
 
-                <h3>Create Publication Record</h3>
-
+                <h3>Use Case: Search</h3>
+                <h4>Paramter search</h4>
                 <div className="form-group">
                     <label>Title</label>
                     <input type="text" value={title} onChange={this.title_change} className="form-control" placeholder="Enter title" />
@@ -299,7 +309,7 @@ export default class SignUp extends Component {
                     <label>Publish Year</label>
                     <input type="text" value={date} onChange={this.date_change} className="form-control" placeholder="Enter year"/>
                 </div>
-
+                <h4>Solr index search</h4>
                 <div className="form-group">
                     <label>Keyword</label>
                     <input type="text" value={keyword} onChange={this.keyword_change} className="form-control" placeholder="Enter keyword"/>
