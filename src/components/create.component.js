@@ -11,92 +11,7 @@ window.$ = $;
 //3.小细节
 
 
-//     function extracrUrl2(){
-//         //see this
-//         //https://reqbin.com/req/c-d2nzjn3z/curl-post-body
-//         //alert("try");
 
-//         var url = "http://www2.informatik.uni-stuttgart.de/cgi-bin/NCSTRL/NCSTRL_view.pl?id=INPROC-2022-05&mod=0&engl=1&inst=AS";
-        
-//         var xhr = new XMLHttpRequest();
-//         xhr.open("POST", url,true);
-        
-//         xhr.setRequestHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9");
-//         xhr.setRequestHeader("Accept-Language", "zh,en-US;q=0.9,en;q=0.8,de;q=0.7,zh-CN;q=0.6");
-//         xhr.setRequestHeader("Cache-Control", "max-age=1000");
-//         xhr.setRequestHeader("Connection", "keep-alive");
-//         xhr.setRequestHeader("Content-Type", "multipart/form-data; boundary=----WebKitFormBoundarySvuUMW0nmABAHHt2");
-//         xhr.setRequestHeader("Origin", "http://www2.informatik.uni-stuttgart.de");
-//         xhr.setRequestHeader("Referer", "http://www2.informatik.uni-stuttgart.de/cgi-bin/NCSTRL/NCSTRL_view.pl?id=INPROC-2022-05&mod=0&engl=1&inst=AS");
-//         xhr.setRequestHeader("Upgrade-Insecure-Requests", "1");
-//         xhr.setRequestHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36");
-//         //xhr.setRequestHeader('Cache-Control,"');
-        
-//         xhr.onreadystatechange = function () {
-//             switch (xhr.readyState) {
-//                 case 0 : alert('UNINITIALIZED');
-//                 case 1 : alert('LOADING');
-//                 case 2 : alert('LOADED');
-//                 case 3 : alert('INTERACTIVE');
-//                 break;
-//                 case 4 : {
-//                     alert('111');
-//                 alert(xhr.status);
-//                 alert(xhr.responseText);
-//                 }
-                
-               
-//                 break;
-//                 default: alert("error");
-//              }  
-       
-//         };
-//         alert('222');
-//         var data = '$------WebKitFormBoundarySvuUMW0nmABAHHt2rnContent-Disposition: form-data; name="aktion"rnrnBibTeXrn------WebKitFormBoundarySvuUMW0nmABAHHt2rnContent-Disposition: form-data; name="bibfile"rnrn/inf/ftp/pub/library/ncstrl.ustuttgart_fi/INPROC-2022-05/INPROC-2022-05.bibrn------WebKitFormBoundarySvuUMW0nmABAHHt2rnContent-Disposition: form-data; name="mod"rnrn0rn------WebKitFormBoundarySvuUMW0nmABAHHt2rnContent-Disposition: form-data; name="engl"rnrn1rn------WebKitFormBoundarySvuUMW0nmABAHHt2rnContent-Disposition: form-data; name="inst"rnrnASrn------WebKitFormBoundarySvuUMW0nmABAHHt2rnContent-Disposition: form-data; name="altestruktur"rnrn0rn------WebKitFormBoundarySvuUMW0nmABAHHt2--rn';
-//         data = null;
-//         xhr.send(data);
-        
-//         alert('333333333');
-//     }
-//     function extracrUrl(){
-//         fetch("http://www2.informatik.uni-stuttgart.de/cgi-bin/NCSTRL/NCSTRL_view.pl?id=INPROC-2022-05&mod=0&engl=1&inst=AS", {
-//   "headers": {
-//     "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
-//     "accept-language": "zh,en-US;q=0.9,en;q=0.8,de;q=0.7,zh-CN;q=0.6",
-//     "cache-control": "max-age=30",
-//     "content-type": "multipart/form-data; boundary=----WebKitFormBoundarybSWuw2vIEnx9JKAL",
-//     "upgrade-insecure-requests": "1"
-//   },
-//   "referrer": "http://www2.informatik.uni-stuttgart.de/cgi-bin/NCSTRL/NCSTRL_view.pl?id=INPROC-2022-05&mod=0&engl=1&inst=AS",
-//   "referrerPolicy": "strict-origin-when-cross-origin",
-//   "body": "------WebKitFormBoundarybSWuw2vIEnx9JKAL\r\nContent-Disposition: form-data; name=\"aktion\"\r\n\r\nBibTeX\r\n------WebKitFormBoundarybSWuw2vIEnx9JKAL\r\nContent-Disposition: form-data; name=\"bibfile\"\r\n\r\n/inf/ftp/pub/library/ncstrl.ustuttgart_fi/INPROC-2022-05/INPROC-2022-05.bib\r\n------WebKitFormBoundarybSWuw2vIEnx9JKAL\r\nContent-Disposition: form-data; name=\"mod\"\r\n\r\n0\r\n------WebKitFormBoundarybSWuw2vIEnx9JKAL\r\nContent-Disposition: form-data; name=\"engl\"\r\n\r\n1\r\n------WebKitFormBoundarybSWuw2vIEnx9JKAL\r\nContent-Disposition: form-data; name=\"inst\"\r\n\r\nAS\r\n------WebKitFormBoundarybSWuw2vIEnx9JKAL\r\nContent-Disposition: form-data; name=\"altestruktur\"\r\n\r\n0\r\n------WebKitFormBoundarybSWuw2vIEnx9JKAL--\r\n",
-//   "method": "POST",
-//   "mode": "cors",
-//   "credentials": "omit"
-// });
-//     }
-//     function extracrUrl1(){
-//         //var xhr = new XMLHttpRequest();
-//         $.ajax({
-//             url: "http://www2.informatik.uni-stuttgart.de/cgi-bin/NCSTRL/NCSTRL_view.pl?id=INPROC-2022-05&mod=0&engl=1&inst=AS",
-//             beforeSend: function(xhr) {
-//                 xhr.setRequestHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9");
-//                 xhr.setRequestHeader("Accept-Language", "zh,en-US;q=0.9,en;q=0.8,de;q=0.7,zh-CN;q=0.6");
-//                 xhr.setRequestHeader("Cache-Control", "max-age=1000");
-//                 xhr.setRequestHeader("Connection", "keep-alive");
-//                 xhr.setRequestHeader("Content-Type", "multipart/form-data; boundary=----WebKitFormBoundarySvuUMW0nmABAHHt2");
-//                 xhr.setRequestHeader("Origin", "http://www2.informatik.uni-stuttgart.de");
-//                 xhr.setRequestHeader("Referer", "http://www2.informatik.uni-stuttgart.de/cgi-bin/NCSTRL/NCSTRL_view.pl?id=INPROC-2022-05&mod=0&engl=1&inst=AS");
-//                 xhr.setRequestHeader("Upgrade-Insecure-Requests", "1");
-//                 xhr.setRequestHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36");
-                
-//             }, success: function(data){
-//                 alert('11111111')
-//                 alert(data);
-//                 //process the JSON data etc
-//             }
-//         })
-//     }
 export default class Login extends Component {
     constructor(props) {
         super(props)
@@ -110,6 +25,10 @@ export default class Login extends Component {
         url:'',
         pubDate: '',
         orgAddress:'',
+
+        addInfosKey:'',
+        addInfosVal:'',
+        addInfos:[{ key: '', val:'' },]
       };
 
     submit=()=>{
@@ -179,7 +98,15 @@ export default class Login extends Component {
             uploadFile.filetype = filevalue.substring(index);
             //alert(uploadFile.filename);
         }
-        /////////////////////////////////
+
+        /////////////get additional json data///////////////
+        let addInfoObj = {};
+        this.state.addInfos.forEach(function (item, index, array) {
+            addInfoObj[item.key]=item.val;
+        })
+        const addInfoJson = JSON.stringify(addInfoJson);
+
+        ////////////////////////////////
 
         // const paper = {
         //     title: this.state.title,
@@ -206,19 +133,19 @@ export default class Login extends Component {
         //   });
         // formData.append('file',myfile.files[0]);
         // formData.append('metadata',json);
-
         formData.append('file',myfile.files[0]);
         formData.append('title', this.state.title);
         formData.append('date', this.state.pubDate);
         formData.append('filename', uploadFile.filename);
-        formData.append('fileSize', '111');
+        formData.append('fileSize', uploadFile.filesize.toString());
         formData.append('pubid', 0);
         formData.append('fileType', uploadFile.filetype);
         formData.append('author.authorid', 0);
         formData.append('author.name', this.state.author);
-        formData.append('organization.address', 'address');
+        formData.append('organization.address', this.state.address);
         formData.append('organization.name', this.state.organization);
         formData.append('organization.orgId', 0);
+        formData.append('addData',addInfoJson)
         
 
         
@@ -274,6 +201,8 @@ export default class Login extends Component {
 
     
 
+    
+
     title_change=(e)=>{
         this.setState({
             title: e.target.value
@@ -309,11 +238,71 @@ export default class Login extends Component {
             bibtext: e.target.value
         })
     }
+    addInfosKey_change=(e,index)=>{
+ 
+        // let y = e.target.value.key;
+        
+        //alert(e.target);
+        const list = [...this.state.addInfosKey];
+        list[index] = e.target.value;
+        this.setState({
+            addInfosKey:list
+        });
+    }
+    addInfosVal_change=(e,index)=>{
+        //let {key,val} = e.target;
+        //alert(e.target);
+        const list = [...this.state.addInfosVal];
+        list[index] = e.target.value;
+        this.setState({
+            addInfosVal:list
+        });
+    }
+
+    addInfos_change=(e,index)=>{
+        const { name, value } = e.target;
+        const list = [...this.state.addInfos];
+        list[index][name] = value;
+        this.setState({
+            addInfos:list
+        });
+    }
+
+    increaseLine = () =>{
+        this.setState({
+            addInfos:[...this.state.addInfos, { key:'', val:''}]
+        });
+    }
     
+    handleAddClick = (e) => {
+        e.preventDefault();
+        // let list = [...this.state.addInfos];
+        // let m = list.push({ key:'', val:''});
+        // let m =[...this.state.addInfos, { key:'', val:''}];
+        // let n = m.length;
+        
+        // // this.setState({
+        // //     addInfos:list
+        // // });
+        
+        // let x=this.state.addInfos.length;
+        // let y =1;
+        this.increaseLine();
+        
+    };
+
+    handleRemoveClick = (e,index) => {
+        
+        const list = [...this.state.addInfos];
+        list.splice(index, 1);
+        this.setState({
+            addInfos:list
+        });
+    };
 
 
     render() {
-        const {title, bibtext,author,organization,orgAddress,pubDate,url} = this.state
+        const {title, bibtext,author,organization,orgAddress,pubDate,url,addInfos} = this.state
         return (
             <form>
 
@@ -357,6 +346,43 @@ export default class Login extends Component {
                     <label>Select a file:</label>
                     <input type="file" className="form-control" name="myfile" id="myfile" ></input>
                 </div>
+
+                
+                    
+
+                
+            {addInfos.map((x, i) => {
+             return (
+                <div className="additional-box">
+                    <input
+                    type = "text"
+                    name = "key"
+                    value = {x.key}
+                    onChange={e =>this.addInfos_change(e,i)}
+                    />
+
+                    <input
+                    type = "text"
+                    name = "val"
+                    value = {x.val}
+                    onChange={e =>this.addInfos_change(e,i)}
+                    />
+                    <div>
+                    <button onClick={() => this.handleRemoveClick(i)}>Remove</button>
+                    <button onClick={this.handleAddClick}>Add</button>
+                    </div>
+                    <pre>
+                        {JSON.stringify(addInfos[i])}
+                    </pre>
+                    
+                </div>
+                );
+            })}
+                
+
+
+                
+                
              
 
                 

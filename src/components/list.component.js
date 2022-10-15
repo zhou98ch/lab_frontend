@@ -81,24 +81,24 @@ export default class List extends React.Component {
   
 
   //当组件输出到 DOM 后会执行 componentDidMount()
-    // componentDidMount(){  
-    //     const _this=this;    //先存一下this，以防使用箭头函数this会指向我们不希望它所指向的对象。
-        //http://129.69.209.197:31000/postgresql/author/YangHaoran
-        //http://localhost:8088/postgresql/author/YangHaoran
-        // axios.get('http://localhost:8088/postgresql/author/YangHaoran')
-        // .then(function (response) {
-        // _this.setState({
-        //     entrys:response.data,
-        //     isLoaded:true
-        // });
-        // })
-        // .catch(function (error) {
-        // console.log(error);
-        // _this.setState({
-        //     isLoaded:false,
-        //     error:error
-        // })
-        // })
+    // // componentDidMount(){  
+    // //     const _this=this;    //先存一下this，以防使用箭头函数this会指向我们不希望它所指向的对象。
+    //     //http://129.69.209.197:31000/postgresql/author/YangHaoran
+    //     //http://localhost:8088/postgresql/author/YangHaoran
+    //     // axios.get('http://localhost:8088/postgresql/author/YangHaoran')
+    //     // .then(function (response) {
+    //     // _this.setState({
+    //     //     entrys:response.data,
+    //     //     isLoaded:true
+    //     // });
+    //     // })
+    //     // .catch(function (error) {
+    //     // console.log(error);
+    //     // _this.setState({
+    //     //     isLoaded:false,
+    //     //     error:error
+    //     // })
+    //     // })
        
 
         // axios({
@@ -117,7 +117,7 @@ export default class List extends React.Component {
         //     }
         //   })
         //   .catch(error => console.log(error));
-    // }
+    // //}
 
   //List.js
 render() {
