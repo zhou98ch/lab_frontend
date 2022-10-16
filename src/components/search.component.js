@@ -202,7 +202,7 @@ export default class SignUp extends Component {
         //     URLinfos: this.urldocs
         // });
         
-        ///////////after response/////////////////////////
+        /////////after response/////////////////////////
         // const response_data = [{"name":"cc","title":"cc","date":"cc","filename":"yang143.txt","size":"111","type":".txt","mntpath":"/mnt/nfs-solr","ObjectId":"943e07d4-96de-48b2-b08c-b83230bb3337.txt","docId":60,"isdeleted":false,"objectId":"943e07d4-96de-48b2-b08c-b83230bb3337.txt"},
         //                      {"name":"yang146","title":"yang146","date":"yang146","filename":"yang146","size":"txt","type":"yang146","mntpath":"/mnt/nfs-solr","ObjectId":"ba0f62c9-291a-4ba9-a119-09d3ba036119.txt","docId":53,"isdeleted":false,"ObjectId":"ba0f62c9-291a-4ba9-a119-09d3ba036119.txt"},
         //                     ]
@@ -216,16 +216,18 @@ export default class SignUp extends Component {
             .then(function (response) {
                 alert("test");
                 if(response.data!=null){
+                    alert("111");
+                    console.log(response.data);
                     this.setState({
                         entrys:response.data,
                         isLoaded:true
                     });
-                    alert(response.data);
                     
                 }
+                // alert(response.data.isNull);
                 //console.log(response.data);
                 
-            })
+            }.bind(this))
         .catch(function (error) {
             console.log(error);
         })
