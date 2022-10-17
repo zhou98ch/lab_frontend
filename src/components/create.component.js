@@ -10,93 +10,11 @@ window.$ = $;
 //2.extract from html page
 //3.小细节
 
+//remove删的有问题
+//用户没有填addinfo时，addinfo 在formdata里不是必传字段
 
-//     function extracrUrl2(){
-//         //see this
-//         //https://reqbin.com/req/c-d2nzjn3z/curl-post-body
-//         //alert("try");
 
-//         var url = "http://www2.informatik.uni-stuttgart.de/cgi-bin/NCSTRL/NCSTRL_view.pl?id=INPROC-2022-05&mod=0&engl=1&inst=AS";
-        
-//         var xhr = new XMLHttpRequest();
-//         xhr.open("POST", url,true);
-        
-//         xhr.setRequestHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9");
-//         xhr.setRequestHeader("Accept-Language", "zh,en-US;q=0.9,en;q=0.8,de;q=0.7,zh-CN;q=0.6");
-//         xhr.setRequestHeader("Cache-Control", "max-age=1000");
-//         xhr.setRequestHeader("Connection", "keep-alive");
-//         xhr.setRequestHeader("Content-Type", "multipart/form-data; boundary=----WebKitFormBoundarySvuUMW0nmABAHHt2");
-//         xhr.setRequestHeader("Origin", "http://www2.informatik.uni-stuttgart.de");
-//         xhr.setRequestHeader("Referer", "http://www2.informatik.uni-stuttgart.de/cgi-bin/NCSTRL/NCSTRL_view.pl?id=INPROC-2022-05&mod=0&engl=1&inst=AS");
-//         xhr.setRequestHeader("Upgrade-Insecure-Requests", "1");
-//         xhr.setRequestHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36");
-//         //xhr.setRequestHeader('Cache-Control,"');
-        
-//         xhr.onreadystatechange = function () {
-//             switch (xhr.readyState) {
-//                 case 0 : alert('UNINITIALIZED');
-//                 case 1 : alert('LOADING');
-//                 case 2 : alert('LOADED');
-//                 case 3 : alert('INTERACTIVE');
-//                 break;
-//                 case 4 : {
-//                     alert('111');
-//                 alert(xhr.status);
-//                 alert(xhr.responseText);
-//                 }
-                
-               
-//                 break;
-//                 default: alert("error");
-//              }  
-       
-//         };
-//         alert('222');
-//         var data = '$------WebKitFormBoundarySvuUMW0nmABAHHt2rnContent-Disposition: form-data; name="aktion"rnrnBibTeXrn------WebKitFormBoundarySvuUMW0nmABAHHt2rnContent-Disposition: form-data; name="bibfile"rnrn/inf/ftp/pub/library/ncstrl.ustuttgart_fi/INPROC-2022-05/INPROC-2022-05.bibrn------WebKitFormBoundarySvuUMW0nmABAHHt2rnContent-Disposition: form-data; name="mod"rnrn0rn------WebKitFormBoundarySvuUMW0nmABAHHt2rnContent-Disposition: form-data; name="engl"rnrn1rn------WebKitFormBoundarySvuUMW0nmABAHHt2rnContent-Disposition: form-data; name="inst"rnrnASrn------WebKitFormBoundarySvuUMW0nmABAHHt2rnContent-Disposition: form-data; name="altestruktur"rnrn0rn------WebKitFormBoundarySvuUMW0nmABAHHt2--rn';
-//         data = null;
-//         xhr.send(data);
-        
-//         alert('333333333');
-//     }
-//     function extracrUrl(){
-//         fetch("http://www2.informatik.uni-stuttgart.de/cgi-bin/NCSTRL/NCSTRL_view.pl?id=INPROC-2022-05&mod=0&engl=1&inst=AS", {
-//   "headers": {
-//     "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
-//     "accept-language": "zh,en-US;q=0.9,en;q=0.8,de;q=0.7,zh-CN;q=0.6",
-//     "cache-control": "max-age=30",
-//     "content-type": "multipart/form-data; boundary=----WebKitFormBoundarybSWuw2vIEnx9JKAL",
-//     "upgrade-insecure-requests": "1"
-//   },
-//   "referrer": "http://www2.informatik.uni-stuttgart.de/cgi-bin/NCSTRL/NCSTRL_view.pl?id=INPROC-2022-05&mod=0&engl=1&inst=AS",
-//   "referrerPolicy": "strict-origin-when-cross-origin",
-//   "body": "------WebKitFormBoundarybSWuw2vIEnx9JKAL\r\nContent-Disposition: form-data; name=\"aktion\"\r\n\r\nBibTeX\r\n------WebKitFormBoundarybSWuw2vIEnx9JKAL\r\nContent-Disposition: form-data; name=\"bibfile\"\r\n\r\n/inf/ftp/pub/library/ncstrl.ustuttgart_fi/INPROC-2022-05/INPROC-2022-05.bib\r\n------WebKitFormBoundarybSWuw2vIEnx9JKAL\r\nContent-Disposition: form-data; name=\"mod\"\r\n\r\n0\r\n------WebKitFormBoundarybSWuw2vIEnx9JKAL\r\nContent-Disposition: form-data; name=\"engl\"\r\n\r\n1\r\n------WebKitFormBoundarybSWuw2vIEnx9JKAL\r\nContent-Disposition: form-data; name=\"inst\"\r\n\r\nAS\r\n------WebKitFormBoundarybSWuw2vIEnx9JKAL\r\nContent-Disposition: form-data; name=\"altestruktur\"\r\n\r\n0\r\n------WebKitFormBoundarybSWuw2vIEnx9JKAL--\r\n",
-//   "method": "POST",
-//   "mode": "cors",
-//   "credentials": "omit"
-// });
-//     }
-//     function extracrUrl1(){
-//         //var xhr = new XMLHttpRequest();
-//         $.ajax({
-//             url: "http://www2.informatik.uni-stuttgart.de/cgi-bin/NCSTRL/NCSTRL_view.pl?id=INPROC-2022-05&mod=0&engl=1&inst=AS",
-//             beforeSend: function(xhr) {
-//                 xhr.setRequestHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9");
-//                 xhr.setRequestHeader("Accept-Language", "zh,en-US;q=0.9,en;q=0.8,de;q=0.7,zh-CN;q=0.6");
-//                 xhr.setRequestHeader("Cache-Control", "max-age=1000");
-//                 xhr.setRequestHeader("Connection", "keep-alive");
-//                 xhr.setRequestHeader("Content-Type", "multipart/form-data; boundary=----WebKitFormBoundarySvuUMW0nmABAHHt2");
-//                 xhr.setRequestHeader("Origin", "http://www2.informatik.uni-stuttgart.de");
-//                 xhr.setRequestHeader("Referer", "http://www2.informatik.uni-stuttgart.de/cgi-bin/NCSTRL/NCSTRL_view.pl?id=INPROC-2022-05&mod=0&engl=1&inst=AS");
-//                 xhr.setRequestHeader("Upgrade-Insecure-Requests", "1");
-//                 xhr.setRequestHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36");
-                
-//             }, success: function(data){
-//                 alert('11111111')
-//                 alert(data);
-//                 //process the JSON data etc
-//             }
-//         })
-//     }
+
 export default class Login extends Component {
     constructor(props) {
         super(props)
@@ -110,6 +28,7 @@ export default class Login extends Component {
         url:'',
         pubDate: '',
         orgAddress:'',
+        addInfos:[{ key: '', val:'' },]
       };
 
     submit=()=>{
@@ -126,42 +45,10 @@ export default class Login extends Component {
             const inputAuthor =this.state.author;
         }
 
-        /////////////////bibtext processing////////////////////////
-        if (this.state.bibtext !== '') {
-            var bibInfo = {title:'',authors:[],address:'',date:'',org:''};
-            
-            const bibFile = parseBibFile(this.state.bibtext);
-            const entryId = bibFile.entries_raw[0]._id;
-           
-            const entry = bibFile.getEntry(entryId); // Keys are case-insensitive
-            bibInfo.title = entry.getField("title"); // This is a complex BibTeX string
-            bibInfo.address = entry.getField("address");
-            bibInfo.date = entry.getField("year");
-            bibInfo.org = entry.getField("institution");
-            const authorField = entry
-                        .getField("author"); // This is a special object, divided into first names, vons and last names according to BibTeX spec
-            //bibInfo.authors = authorField.authors$;
-            var tt = [];
-            authorField.authors$.map((author, i) => 
-                tt.push((author.firstNames
-                    .concat(author.vons)
-                    .concat(author.lastNames)
-                    .concat(author.jrs)).join(" "))
-                );
-            bibInfo.authors = tt;
 
-            // authorField.authors$.map((author, i) => alert("Author: " 
-            //     + (author.firstNames
-            //               .concat(author.vons)
-            //               .concat(author.lastNames)
-            //               .concat(author.jrs)).join(" ")));
-
-            //const bibTitle = fieldValue.data;
-            
-            //alert(normalizeFieldValue(bibInfo.title));
-        }
         
         ////////////file processing////////////////////////////////////
+        
         var myfile = document.getElementById('myfile');
         var uploadFile = {filename:'',filetype:'',filesize:''};
         
@@ -179,7 +66,15 @@ export default class Login extends Component {
             uploadFile.filetype = filevalue.substring(index);
             //alert(uploadFile.filename);
         }
-        /////////////////////////////////
+
+        /////////////get additional json data///////////////
+        let addInfoObj = {};
+        this.state.addInfos.forEach(function (item, index, array) {
+            addInfoObj[item.key]=item.val;
+        })
+        const addInfoJson = JSON.stringify(addInfoObj);
+
+        ////////////////////////////////
 
         // const paper = {
         //     title: this.state.title,
@@ -211,19 +106,20 @@ export default class Login extends Component {
         formData.append('title', this.state.title);
         formData.append('date', this.state.pubDate);
         formData.append('filename', uploadFile.filename);
-        formData.append('fileSize', '111');
+        formData.append('fileSize', uploadFile.filesize.toString());
         formData.append('pubid', 0);
         formData.append('fileType', uploadFile.filetype);
         formData.append('author.authorid', 0);
         formData.append('author.name', this.state.author);
-        formData.append('organization.address', 'address');
+        formData.append('organization.address', this.state.address);
         formData.append('organization.name', this.state.organization);
         formData.append('organization.orgId', 0);
-        
-
-        
+        if(!(this.state.addInfos.length==1 && this.state.addInfos[0]['key'] =='')){
+            formData.append('addData',addInfoJson);
+        }
+  
         const config = {     
-            // headers: { 'content-type': 'multipart/form-data',
+             //headers: { 'content-type': 'multipart/form-data',
             headers: { 
                        'Access-Control-Allow-Origin':'http://localhost:3000'
                         }
@@ -235,7 +131,8 @@ export default class Login extends Component {
         
         //129.69.209.197:8080 http://localhost:8080/create
         //axios.get('http://localhost:8088/postgresql/author/YangHaoran')
-        axios.post('http://129.69.209.197:31002/user/create', formData, config)
+        axios.post('http://localhost:8088/user/create', formData, config)
+        //axios.post('http://129.69.209.197:31002/user/create', formData, config)
             .then(response => {
                 console.log(response);
             })
@@ -309,15 +206,103 @@ export default class Login extends Component {
             bibtext: e.target.value
         })
     }
+    bibtext_newchange=(e)=>{
+        e.preventDefault();
+        
+        if (this.state.bibtext !== '') {
+            var bibInfo = {title:'',authors:[],address:'',date:'',org:'',publisher:'',language:'',booktitle:''};
+            
+            const bibFile = parseBibFile(this.state.bibtext);
+            const entryId = bibFile.entries_raw[0]._id;
+           
+            const entry = bibFile.getEntry(entryId); // Keys are case-insensitive
+            bibInfo.title = entry.getFieldAsString("title"); // This is a complex BibTeX string
+            bibInfo.address = entry.getFieldAsString("address");
+            bibInfo.date = entry.getFieldAsString("year");
+            bibInfo.org = entry.getFieldAsString("institution");
+            bibInfo.publisher = entry.getFieldAsString("publisher");
+            bibInfo.language  = entry.getFieldAsString("language");
+            bibInfo.booktitle   = entry.getFieldAsString("booktitle");
+            const authorField = entry
+                        .getField("author"); // This is a special object, divided into first names, vons and last names according to BibTeX spec
+            //bibInfo.authors = authorField.authors$;
+            var tt = [];
+            authorField.authors$.map((author, i) => 
+                tt.push((author.firstNames
+                    .concat(author.vons)
+                    .concat(author.lastNames)
+                    .concat(author.jrs)).join(" "))
+                );
+            bibInfo.authors = tt;
+            this.setState({
+                title:bibInfo.title,
+                author:bibInfo.authors[0],
+                organization:bibInfo.org,
+                pubDate:bibInfo.date,
+                orgAddress:bibInfo.address
+
+            })
+            const list = [...this.state.addInfos];
+            if(list.length==1 && list[0]['key'] =='')
+                list.pop();
+            list.push({key:'publisher',val:bibInfo.publisher});
+            list.push({key:'bookTitle',val:bibInfo.booktitle});
+            list.push({key:'language',val:bibInfo.language});
+            this.setState({
+                addInfos:list
+            });
+        }
+    }
+   
+
+    addInfos_change=(e,index)=>{
+        const { name, value } = e.target;
+        const list = [...this.state.addInfos];
+        list[index][name] = value;
+        this.setState({
+            addInfos:list
+        });
+    }
+
+    increaseLine = () =>{
+        this.setState({
+            addInfos:[...this.state.addInfos, { key:'', val:''}]
+        });
+    }
     
+    handleAddClick = (e) => {
+        e.preventDefault();
+        // let list = [...this.state.addInfos];
+        // let m = list.push({ key:'', val:''});
+        // let m =[...this.state.addInfos, { key:'', val:''}];
+        // let n = m.length;
+        
+        // // this.setState({
+        // //     addInfos:list
+        // // });
+        
+        // let x=this.state.addInfos.length;
+        // let y =1;
+        this.increaseLine();
+        
+    };
+
+    handleRemoveClick = (e,index) => {
+        
+        const list = [...this.state.addInfos];
+        list.splice(index, 1);
+        this.setState({
+            addInfos:list
+        });
+    };
 
 
     render() {
-        const {title, bibtext,author,organization,orgAddress,pubDate,url} = this.state
+        const {title, bibtext,author,organization,orgAddress,pubDate,url,addInfos} = this.state
         return (
             <form>
 
-                <h3>Create Publication Record</h3>
+                <h3>Use Case: Create</h3>
 
                 <div className="form-group">
                     <label>Title</label>
@@ -352,11 +337,55 @@ export default class Login extends Component {
                     <textarea value={bibtext} onChange={this.bibtext_change} className="form-control" cols="10" rows="5" placeholder="Or directly copy the BibTex here"/>
 
                 </div>
-
+                <button onClick={this.bibtext_newchange}>AUTO FULFILL</button>
+                <pre>
+                
+                        {JSON.stringify(addInfos[0])}
+                        {JSON.stringify(addInfos[1])}
+                        {JSON.stringify(addInfos[2])}
+                </pre>
                 <div className="form-group">
                     <label>Select a file:</label>
                     <input type="file" className="form-control" name="myfile" id="myfile" ></input>
                 </div>
+
+                
+                    
+
+                
+            {addInfos.map((x, i) => {
+             return (
+                <div className="additional-box">
+                    <input
+                    type = "text"
+                    name = "key"
+                    value = {x.key}
+                    onChange={e =>this.addInfos_change(e,i)}
+                    />
+
+                    <input
+                    type = "text"
+                    name = "val"
+                    value = {x.val}
+                    onChange={e =>this.addInfos_change(e,i)}
+                    />
+                    <div>
+                    <button onClick={() => this.handleRemoveClick(i)}>Remove</button>
+                    <button onClick={this.handleAddClick}>Add</button>
+                    </div>
+                    <pre>
+                
+                        {JSON.stringify(addInfos[i])}
+                    </pre>
+                    
+                </div>
+                );
+            })}
+                
+
+
+                
+                
              
 
                 
