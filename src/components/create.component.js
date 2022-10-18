@@ -10,10 +10,18 @@ window.$ = $;
 //2.extract from html page
 //3.小细节
 
-//remove删的有问题
+//css style
+//remove删的有问题 x
 //用户没有填addinfo时，addinfo 在formdata里不是必传字段
+//bibtex的数据传送有问题吗
+//abstract检查可以正常返回吗
 
-
+//create 用戶不填 不发送addinfo
+//search 把addinfo功能，增加显示返回的json
+//delete测试 
+//只输入一项也能查
+//keyword查询默认*
+//删除成功 插入成功 
 
 export default class Login extends Component {
     constructor(props) {
@@ -114,6 +122,8 @@ export default class Login extends Component {
         formData.append('organization.address', this.state.address);
         formData.append('organization.name', this.state.organization);
         formData.append('organization.orgId', 0);
+        // formData.append('addData',addInfoJson);
+        //no addinfo entered by user, then not send addinfo
         if(!(this.state.addInfos.length==1 && this.state.addInfos[0]['key'] =='')){
             formData.append('addData',addInfoJson);
         }
@@ -131,8 +141,8 @@ export default class Login extends Component {
         
         //129.69.209.197:8080 http://localhost:8080/create
         //axios.get('http://localhost:8088/postgresql/author/YangHaoran')
-        axios.post('http://localhost:8088/user/create', formData, config)
-        //axios.post('http://129.69.209.197:31002/user/create', formData, config)
+        //axios.post('http://localhost:8088/user/create', formData, config)
+        axios.post('http://129.69.209.197:31002/user/create', formData, config)
             .then(response => {
                 console.log(response);
             })
@@ -287,7 +297,7 @@ export default class Login extends Component {
         
     };
 
-    handleRemoveClick = (e,index) => {
+    handleRemoveClick = (index) => {
         
         const list = [...this.state.addInfos];
         list.splice(index, 1);
@@ -301,7 +311,8 @@ export default class Login extends Component {
         const {title, bibtext,author,organization,orgAddress,pubDate,url,addInfos} = this.state
         return (
             <form>
-
+                <br/><br/><br/><br/><br/><br/><br/>
+                
                 <h3>Use Case: Create</h3>
 
                 <div className="form-group">
@@ -333,11 +344,11 @@ export default class Login extends Component {
 
                 <div className="form-group">
                     <label>BibTex</label>
-                    <input type="text" value={url} onChange={this.url_change}  className="form-control" placeholder="Or directly put the URL here" />
+                    
                     <textarea value={bibtext} onChange={this.bibtext_change} className="form-control" cols="10" rows="5" placeholder="Or directly copy the BibTex here"/>
 
                 </div>
-                <button onClick={this.bibtext_newchange}>AUTO FULFILL</button>
+                <button  class="button-38" onClick={this.bibtext_newchange}>Auto fulfill</button>
                 <pre>
                 
                         {JSON.stringify(addInfos[0])}
@@ -368,11 +379,8 @@ export default class Login extends Component {
                     name = "val"
                     value = {x.val}
                     onChange={e =>this.addInfos_change(e,i)}
-                    />
-                    <div>
-                    <button onClick={() => this.handleRemoveClick(i)}>Remove</button>
-                    <button onClick={this.handleAddClick}>Add</button>
-                    </div>
+                    /><button class="button-38" onClick={() => this.handleRemoveClick(i)}>Remove</button> <button class="button-38" onClick={this.handleAddClick}>Add</button>
+                   
                     <pre>
                 
                         {JSON.stringify(addInfos[i])}
@@ -391,7 +399,7 @@ export default class Login extends Component {
                 
 
 
-                <button type="submit" onClick={this.submit} className="btn btn-dark btn-lg btn-block">Submit</button>
+                <button type="submit" onClick={this.submit} class="button-56" >Submit</button>
          
             </form>
         );

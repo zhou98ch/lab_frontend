@@ -15,13 +15,13 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 500vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: rgb(6, 6, 6);
 }
 
 .App-link {
@@ -35,4 +35,103 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+#content {
+  width:auto;
+  line-height: 1.1em;
+}
+
+#parent {
+   border : 0px solid red;
+   overflow : hidden;
+}
+
+
+.button-24 {
+  margin-top: 10px ;
+  margin-bottom: 10px ;
+  background: #4ec5c1;
+  border: 1px solid #4ec5c1;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.521) 4px 4px 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 16px;
+  min-height: 40px;
+  outline: 0;
+  padding: 12px 14px;
+  text-align: center;
+  text-rendering: geometricprecision;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+}
+
+.button-24:hover,
+.button-24:active {
+  background-color: #000000;
+  background-position: 0 0;
+  color: #ec5768;
+}
+
+.button-24:active {
+  opacity: .5;
+}
+
+
+.button-38 {
+  margin-top: 10px ;
+  margin-bottom: 10px ;
+  margin-right: 10px;
+  
+  background-color: #dff178;
+  border: 0;
+  border-radius: .5rem;
+  box-sizing: border-box;
+  color: #111827;
+  font-family: "Inter var",ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: .875rem;
+  font-weight: 600;
+  line-height: 0.5rem;
+  padding: .75rem 1rem;
+  text-align: center;
+  text-decoration: none #D1D5DB solid;
+  text-decoration-thickness: auto;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-38:hover {
+  background-color: rgb(249,250,251);
+}
+
+.button-38:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.button-38:focus-visible {
+  box-shadow: none;
+}
+
+.backtop{
+  width: 60px;
+  height: 48px;
+  border-radius: 5px;
+  
+  background:#000000;
+  cursor: pointer;
+  
 }

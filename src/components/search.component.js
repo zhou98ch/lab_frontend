@@ -23,7 +23,8 @@ class TrData extends React.Component{
     initialState ={
         data:'xxx'
       };
-    downloadHandler=(objectId)=>{
+    downloadHandler=(e,objectId)=>{
+        e.preventDefault();
           // let formData = new FormData;
           // formData.append('objectId','1111.txt');
           // formData.append('path','test');
@@ -38,16 +39,17 @@ class TrData extends React.Component{
                       'Access-Control-Allow-Origin':'http://localhost:3000'
                         },
             responseType: "arraybuffer"
-        }
+        };
         //http://129.69.209.197:31002/
         //'http://localhost:8080/user/getFile'
         axios.get('http://localhost:3000/api/user/getFile', {params:fileData}, config)
         .then((response) => {
+            let t=response;
             var link = document.createElement("a");
             link.href = window.URL.createObjectURL(
               new Blob([response.data], { type: "application/octet-stream" })
             );
-            link.download = "file.txt";
+            link.download = objectId;
         
             document.body.appendChild(link);
         
@@ -57,25 +59,23 @@ class TrData extends React.Component{
             }, 200);
           })
           .catch((error) => {});
-      }
+      };
     deleteHandler=(objectId)=>{
         const config = {     
             headers: { 
                 'Access-Control-Allow-Origin':'http://localhost:3000'
                         }
-        }
-        axios.delete('http://localhost:8080/user/deleteFile', {	
+        };
+        axios.delete('http://129.69.209.197:31002/user/deleteFile', {	
             params: {	// 请求参数拼接在url上
                 objectId: objectId
             },config
           }).then(res => {
             console.log(res)
-          })
+          });
 
-    }
-    componentDidMount(){  
-        
-    }
+    };
+  
     render(){
       //const location = useLocation();
       
@@ -95,21 +95,34 @@ class TrData extends React.Component{
                         <td>{entry.name}</td>
                         <td>{entry.date}</td>
                         <td>{entry.type}</td>
-                        <td><button onClick = {this.downloadHandler(entry.objectId)}>Download</button></td>
-                        <td><button onClick = {this.deleteHandler(entry.objectId)}>Delete</button></td>
+                        {/* <td><button onClick = {(e) =>this.downloadHandler(e,entry.objectId)}>Download</button></td> */}
+                        <td><a href={'http://129.69.209.197:31002/user/getFile?objectId='+entry.ObjectId}>Download</a></td>
+                        {/* <td><button onClick = {(e) =>this.deleteHandler(e,entry.objectId)}>Delete</button></td> */}
+                        {/* <td><a class = "delete" href={'http://129.69.209.197:31002/user/deleteFile?objectId='+entry.ObjectId}>Download</a></td> */}
+                        <td>
+                        <a href={'http://129.69.209.197:31002/user/deleteFile?objectId='+entry.ObjectId}>Delete</a>
+                        </td>
                     </tr>
                     <tr>
                         <div>
                             <h6>Abstract:</h6>
                                 <Test>
-                                {entry.abstract}
+                                {entry.abstra}
                                 </Test>
                         </div>
-                        <div>
-                            <h6>Keywords:</h6>
-                            {entry.Keywords}
-                        </div>
+                        
                     </tr>
+                    <tr>
+                        <div>
+                            <h6>Additional Information:</h6>
+                                
+                                {entry.publication_json}
+                                
+                        </div>
+                        
+                    </tr>
+
+
 
 
                 </>
@@ -144,6 +157,7 @@ export default class SignUp extends Component {
     //         isLoaded:this.state.isLoaded
     //     });
     //   }
+    
     query = (e) => {
         
         // if (this.state.title !== '') {
@@ -161,7 +175,7 @@ export default class SignUp extends Component {
         //     data: 'xyz' //需要传递的参数
             
         //     });
-        let searchInfo = {authorname:'',title:'',date:'',addData:''};
+        let searchInfo = {authorname:'%',title:'%',date:'%',addData:''};
         // let searchAuthor = '';
         // let searchtitle = ''
         let formData = new FormData();
@@ -177,19 +191,30 @@ export default class SignUp extends Component {
             searchInfo.date =this.state.date;
             //formData.append('authodatername',this.state.date);
         }
-        if (this.state.addInfos[0].key !== '') {
-            /////////////get additional json data///////////////
-        let addInfoObj = {};
-        
-        this.state.addInfos.forEach(function (item, index, array) {
-            addInfoObj[item.key]=item.val;
-        })
-        
-
-        const addInfoJson = JSON.stringify(addInfoObj);
-            searchInfo.addData =addInfoJson;
+        if (this.state.date !== '') {
+            searchInfo.addData =JSON.stringify({'empty':'empty'});
             //formData.append('authodatername',this.state.date);
         }
+        /////////////get additional json data///////////////
+        // if (this.state.addInfos[0].key !== '') {
+        //     let addInfoObj = {};
+            
+        //     this.state.addInfos.forEach(function (item, index, array) {
+        //         addInfoObj[item.key]=item.val;//
+        //     })
+        //     const addInfoJson = JSON.stringify(addInfoObj);
+        //     searchInfo.addData =addInfoJson;
+        // }
+        // else{
+        //     let addInfoObj ={'empty':'empty'};
+        //     const addInfoJson = JSON.stringify(addInfoObj);
+        //     searchInfo.addData =addInfoJson;
+        // }
+
+        /////////////////keyword////////////////////
+        const keyword = this.state.keyword==''?'*':this.state.keyword;
+        
+            //formData.append('authodatername',this.state.date);
         
         // if (this.state.keyword !== '') {
         //     searchInfo.keyword =this.state.keyword;
@@ -219,22 +244,23 @@ export default class SignUp extends Component {
         //     URLinfos: this.urldocs
         // });
         
-        // ///////after response/////////////////////////
-        // const response_data = [{"name":"cc","title":"cc","date":"cc","filename":"yang143.txt","size":"111","type":".txt","mntpath":"/mnt/nfs-solr","ObjectId":"943e07d4-96de-48b2-b08c-b83230bb3337.txt","docId":60,"isdeleted":false,"objectId":"943e07d4-96de-48b2-b08c-b83230bb3337.txt"},
+        ///////after response/////////////////////////
+        // const response_data = [{"name":"cc","title":"cc","date":"cc","filename":"yang143.txt","size":"111","type":".txt","mntpath":"/mnt/nfs-solr","ObjectId":"943e07d4-96de-48b2-b08c-b83230bb3337.txt","docId":60,"isdeleted":false,"objectId":"943e07d4-96de-48b2-b08c-b83230bb3337.txt"
+        //                     ,abstract:"This study examines General Practitioners’ preferences for pecuniary and non-pecuniary job characteristics in the context of choosing a general practice in which to work. A discrete choice experiment is used to test hypotheses about the nature of the utility function. Marginal rates of substitution between income and non-pecuniary characteristics are calculated. The results suggest that policies aimed at influencing General Practitioners’ location choices should take account of both non-pecuniary and pecuniary factors, particularly out of hours work commitments."},
         //                      {"name":"yang146","title":"yang146","date":"yang146","filename":"yang146","size":"txt","type":"yang146","mntpath":"/mnt/nfs-solr","ObjectId":"ba0f62c9-291a-4ba9-a119-09d3ba036119.txt","docId":53,"isdeleted":false,"ObjectId":"ba0f62c9-291a-4ba9-a119-09d3ba036119.txt"
-        //                         },
+        //                       ,abstract:"This study examines General Practitioners’ preferences for pecuniary and non-pecuniary job characteristics in the context of choosing a general practice in which to work. A discrete choice experiment is used to test hypotheses about the nature of the utility function. Marginal rates of substitution between income and non-pecuniary characteristics are calculated. The results suggest that policies aimed at influencing General Practitioners’ location choices should take account of both non-pecuniary and pecuniary factors, particularly out of hours work commitments."  },
         //                     ]
         // this.setState({
         //     entrys:response_data,
         //     isLoaded:true
-        // });
+        // }); 
 
         ////////send real request//////////////////////////////////
-        axios.get('http://localhost:8080/user/search/'+this.state.keyword, {params:searchInfo}, config)
+        axios.get('http://129.69.209.197:31002/user/search/'+keyword, {params:searchInfo}, config)
             .then(function (response) {
-                alert("test");
+                
                 if(response.data!=null){
-                    alert("111");
+                  
                     console.log(response.data);
                     this.setState({
                         entrys:response.data,
@@ -306,8 +332,8 @@ export default class SignUp extends Component {
         
     };
 
-    handleRemoveClick = (e,index) => {
-        
+    handleRemoveClick = (index) => {
+        //alert(index);
         const list = [...this.state.addInfos];
         list.splice(index, 1);
         this.setState({
@@ -321,7 +347,7 @@ export default class SignUp extends Component {
               return (
                 <>
                 <form>
-
+                <br/><br/>
                 <h3>Use Case: Seach, Retrieve and Delete</h3>
                 <h4>Search by parameters</h4>
                 <div className="form-group">
@@ -339,10 +365,11 @@ export default class SignUp extends Component {
                     <input type="text" value={date} onChange={this.date_change} className="form-control" placeholder="Enter year"/>
                 </div>
                 
-                <label>Additional information</label>
+                {/* <label>Additional information</label>
                 {addInfos.map((x, i) => {
                 return (
                     <div className="additional-box">
+                        
                         <input
                         type = "text"
                         name = "key"
@@ -357,19 +384,15 @@ export default class SignUp extends Component {
                         value = {x.val}
                         onChange={e =>this.addInfos_change(e,i)}
                         placeholder="Enter value"
-                        />
-
-                        <div>
-                            <button onClick={() => this.handleRemoveClick(i)}>Remove</button>
-                            <button onClick={this.handleAddClick}>Add</button>
-                        </div>
+                        /> <button class="button-38" onClick={() => this.handleRemoveClick(i)}>Remove</button> <button class="button-38" onClick={this.handleAddClick}>Add</button>
+                        
                         <pre>
                             {JSON.stringify(addInfos[i])}
                         </pre>
                         
                     </div>
                 );
-            })}
+                })} */}
 
                 <h4>Search by fulltext-indexing</h4>
                 <div className="form-group">
@@ -379,7 +402,7 @@ export default class SignUp extends Component {
                 
               
 
-                <button type="submit" onClick={this.query} className="btn btn-dark btn-lg btn-block">       
+                <button type="submit" onClick={this.query} class="button-24">       
                                 Query
                 </button>
          
@@ -416,38 +439,38 @@ export default class SignUp extends Component {
                     <input type="text" value={keyword} onChange={this.keyword_change} className="form-control" placeholder="Enter keyword"/>
                 </div>
                 
-                {addInfos.map((x, i) => {
-             return (
-                <div className="additional-box">
-                    <input
-                    type = "text"
-                    name = "key"
-                    value = {x.key}
-                    onChange={e =>this.addInfos_change(e,i)}
-                    />
+                {/* {addInfos.map((x, i) => {
+                return (
+                    <div className="additional-box">
+                        <input
+                        type = "text"
+                        name = "key"
+                        value = {x.key}
+                        onChange={e =>this.addInfos_change(e,i)}
+                        />
 
-                    <input
-                    type = "text"
-                    name = "val"
-                    value = {x.val}
-                    onChange={e =>this.addInfos_change(e,i)}
-                    />
-                    <div>
-                    <button onClick={() => this.handleRemoveClick(i)}>Remove</button>
-                    <button onClick={this.handleAddClick}>Add</button>
-                    </div>
-                    <pre>
-                        {JSON.stringify(addInfos[i])}
-                    </pre>
+                        <input
+                        type = "text"
+                        name = "val"
+                        value = {x.val}
+                        onChange={e =>this.addInfos_change(e,i)}
+                        /> <button class="button-38" onClick={() => this.handleRemoveClick(i)}>Remove</button> <button class="button-38" onClick={this.handleAddClick}>Add</button>
+                        
                     
-                </div>
+                        
+                        
+                        <pre>
+                            {JSON.stringify(addInfos[i])}
+                        </pre>
+                        
+                    </div>
                 );
-            })}
+                })} */}
 
-                <button type="submit" onClick={this.query} className="btn btn-dark btn-lg btn-block">       
+                <button type="submit" onClick={this.query} class="button-38" >       
                                 Query
                 </button>
-         
+            
             </form>
 
             
@@ -462,14 +485,15 @@ export default class SignUp extends Component {
                         <th className="text-center">author name</th>
                         <th className="text-center">date</th>
                         <th className="text-center">file type</th>
-                        <th className="text-center">Execution</th>
-                        <th className="text-center">Execution</th>
+                        <th className="text-center">Download</th>
+                        <th className="text-center">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
                         <TrData entrys={this.state.entrys}/>
                 </tbody>
           </table>
+          
           </>
         );}
     }
@@ -501,4 +525,6 @@ export default class SignUp extends Component {
                             Query
                         </Link> */}
 
+
+//className="btn btn-dark btn-lg btn-block"
 //[{"name":"cc","title":"cc","date":"cc","filename":"yang143.txt","size":"111","type":".txt","mntpath":"/mnt/nfs-solr","ObjectId":"943e07d4-96de-48b2-b08c-b83230bb3337.txt","docId":60,"isdeleted":false,"objectId":"943e07d4-96de-48b2-b08c-b83230bb3337.txt"},{"name":"yang146","title":"yang146","date":"yang146","filename":"yang146","size":"yang146","type":"yang146","mntpath":"/mnt/nfs-solr","ObjectId":"ba0f62c9-291a-4ba9-a119-09d3ba036119.txt","docId":53,"isdeleted":false,"objectId":"ba0f62c9-291a-4b

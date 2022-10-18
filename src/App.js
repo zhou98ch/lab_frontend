@@ -8,6 +8,8 @@ import Search from './components/search.component'
 import List from './components/list.component';
 
 function App() {
+  
+  
   return (
     <Router>
       <div className="App">
@@ -37,7 +39,7 @@ function App() {
             </div>
           </div>
         </nav>
-
+        <br></br><br></br><br></br><br></br><br></br>
         <div className="outer">
           <div className="inner">
             <Routes>
@@ -49,7 +51,9 @@ function App() {
           </div>
         </div>
       </div>
+      
     </Router>
+    
   )
 }
 
