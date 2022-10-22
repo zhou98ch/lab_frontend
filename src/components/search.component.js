@@ -260,7 +260,7 @@ export default class SignUp extends Component {
             .then(function (response) {
                 
                 if(response.data!=null){
-                  
+                   
                     console.log(response.data);
                     this.setState({
                         entrys:response.data,
@@ -268,6 +268,7 @@ export default class SignUp extends Component {
                     });
                     
                 }
+                
                 // alert(response.data.isNull);
                 //console.log(response.data);
                 
@@ -349,7 +350,7 @@ export default class SignUp extends Component {
                 <form>
                 <br/><br/>
                 <h3>Use Case: Seach, Retrieve and Delete</h3>
-                <h4>Search by parameters</h4>
+                <h4>Paramatric searching</h4>
                 <div className="form-group">
                     <label>Title</label>
                     <input type="text" value={title} onChange={this.title_change} className="form-control" placeholder="Enter title" />
@@ -394,7 +395,7 @@ export default class SignUp extends Component {
                 );
                 })} */}
 
-                <h4>Search by fulltext-indexing</h4>
+                <h4>Fulltext-indexing searching</h4>
                 <div className="form-group">
                     <label>Keyword</label>
                     <input type="text" value={keyword} onChange={this.keyword_change} className="form-control" placeholder="Enter keyword"/>
@@ -418,7 +419,7 @@ export default class SignUp extends Component {
             <form>
 
                 <h3>Use Case: Seach, Retrieve and Delete</h3>
-
+                <h4>Paramatric searching</h4>
                 <div className="form-group">
                     <label>Title</label>
                     <input type="text" value={title} onChange={this.title_change} className="form-control" placeholder="Enter title" />
@@ -433,7 +434,7 @@ export default class SignUp extends Component {
                     <label>Publish Year</label>
                     <input type="text" value={date} onChange={this.date_change} className="form-control" placeholder="Enter year"/>
                 </div>
-
+                <h4>Fulltext-indexing searching</h4>
                 <div className="form-group">
                     <label>Keyword</label>
                     <input type="text" value={keyword} onChange={this.keyword_change} className="form-control" placeholder="Enter keyword"/>
@@ -493,7 +494,7 @@ export default class SignUp extends Component {
                         <TrData entrys={this.state.entrys}/>
                 </tbody>
           </table>
-          
+          <a href={'/search'}>Clear</a>
           </>
         );}
     }

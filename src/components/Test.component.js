@@ -31,7 +31,7 @@ export default class Test extends React.Component {
      return ( 
      < div>
          { this.state.showButton ? 
-        <button onClick={this.showHidePara}> Show/hide </button>
+        <button onClick={this.showHidePara} class="button-38"> Show/hide </button>
      : null
      }
      <div id ="parent" style={{height:this.state.height}}>

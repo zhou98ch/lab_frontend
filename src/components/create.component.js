@@ -39,10 +39,10 @@ export default class Login extends Component {
         addInfos:[{ key: '', val:'' },]
       };
 
-    submit=()=>{
+    submit=(e)=>{
         //alert('sub');
         // extracrUrl();
-       
+       e.preventDefault();
         
         if (this.state.title != '') {
           //this.props.history.push('/Index')
@@ -142,14 +142,21 @@ export default class Login extends Component {
         //129.69.209.197:8080 http://localhost:8080/create
         //axios.get('http://localhost:8088/postgresql/author/YangHaoran')
         //axios.post('http://localhost:8088/user/create', formData, config)
+        //let createSuccess = false;
         axios.post('http://129.69.209.197:31002/user/create', formData, config)
             .then(response => {
-                console.log(response);
+                //createSuccess = true;
+                
+                alert("creation success");
+                this.setState(this.initialState);
+                //console.log(response);
+                
             })
             .catch(error => {
-                console.log(error);
+                alert("creation failed!");
+                //console.log(error);
             });
-        console.log('success')
+        //if(createSuccess==false)    alert("Time out! Creation failed!");
         //problems:
         //1.org.apache.tomcat.util.http.fileupload.impl.FileSizeLimitExceededException: The field file exceeds its maximum permitted size of 1048576 bytes.
         //4.bibtext 填充逻辑 如果不填就是null
@@ -255,9 +262,12 @@ export default class Login extends Component {
             const list = [...this.state.addInfos];
             if(list.length==1 && list[0]['key'] =='')
                 list.pop();
-            list.push({key:'publisher',val:bibInfo.publisher});
-            list.push({key:'bookTitle',val:bibInfo.booktitle});
-            list.push({key:'language',val:bibInfo.language});
+            if(bibInfo.publisher)
+                list.push({key:'publisher',val:bibInfo.publisher});
+            if(bibInfo.booktitle)
+                list.push({key:'bookTitle',val:bibInfo.booktitle});
+            if(bibInfo.language)
+                list.push({key:'language',val:bibInfo.language});
             this.setState({
                 addInfos:list
             });
