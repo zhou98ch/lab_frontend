@@ -337,17 +337,17 @@ export default class Login extends Component {
 
                 <div className="form-group">
                     <label>Organization Name</label>
-                    <input type="text" value={organization} onChange={this.organization_change} className="form-control" />
+                    <input type="text" value={organization} onChange={this.organization_change} className="form-control" placeholder="Enter organization name"/>
                 </div>
 
                 <div className="form-group">
                     <label>Organization Address</label>
-                    <input type="text" value={orgAddress} onChange={this.orgAdd_change} className="form-control" />
+                    <input type="text" value={orgAddress} onChange={this.orgAdd_change} className="form-control" placeholder="Enter address"/>
                 </div>
 
                 <div className="form-group">
                     <label>Published Year</label>
-                    <input type="text" value={pubDate} onChange={this.pubDate_change} className="form-control" />
+                    <input type="text" value={pubDate} onChange={this.pubDate_change} className="form-control" placeholder="Enter published year"/>
                 </div>
 
                 
@@ -359,12 +359,12 @@ export default class Login extends Component {
 
                 </div>
                 <button  class="button-38" onClick={this.bibtext_newchange}>Auto fulfill</button>
-                <pre>
+                {/* <pre>
                 
                         {JSON.stringify(addInfos[0])}
                         {JSON.stringify(addInfos[1])}
                         {JSON.stringify(addInfos[2])}
-                </pre>
+                </pre> */}
                 <div className="form-group">
                     <label>Select a file:</label>
                     <input type="file" className="form-control" name="myfile" id="myfile" ></input>
@@ -373,28 +373,33 @@ export default class Login extends Component {
                 
                     
 
-                
+            <label>Additional information</label>    
             {addInfos.map((x, i) => {
              return (
                 <div className="additional-box">
                     <input
+                    className="add-info"
                     type = "text"
                     name = "key"
                     value = {x.key}
                     onChange={e =>this.addInfos_change(e,i)}
+                    placeholder="Enter key"
+                    border="0.5px"
+                    background-color='red'
                     />
 
                     <input
+                    className="add-info"
                     type = "text"
                     name = "val"
                     value = {x.val}
                     onChange={e =>this.addInfos_change(e,i)}
+                    placeholder="Enter value"
                     /><button class="button-38" onClick={() => this.handleRemoveClick(i)}>Remove</button> <button class="button-38" onClick={this.handleAddClick}>Add</button>
                    
-                    <pre>
-                
+                    {/* <pre>
                         {JSON.stringify(addInfos[i])}
-                    </pre>
+                    </pre> */}
                     
                 </div>
                 );
@@ -409,7 +414,7 @@ export default class Login extends Component {
                 
 
 
-                <button type="submit" onClick={this.submit} class="button-56" >Submit</button>
+                <button type="submit" onClick={this.submit}  class="button-38" >Submit</button>
          
             </form>
         );
